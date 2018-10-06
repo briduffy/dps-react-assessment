@@ -40,7 +40,6 @@ class Beers extends React.Component {
   }
 
   render() {
-    const { entries } = this.state.beers
     return(
       <Container>
         <Header as='h2' textAlign='center'>BEERS</Header>
@@ -51,7 +50,7 @@ class Beers extends React.Component {
               hasMore={this.state.page < this.state.total_pages}
               useWindow={false}
             >
-              {entries.map( beer =>
+              {this.state.beers.map( beer =>
                 <Card color='violet' centered key={beer.id}>
                   <Card.Content>
                     <Card.Header>
