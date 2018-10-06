@@ -20,7 +20,7 @@ class Beers extends React.Component {
   componentDidMount() {
     axios.get('/api/all_beers')
       .then( res => {
-        this.setState({ beers: [...res.state.entries, ...data.entries], total_pages: res.data.total_pages })
+        this.setState({ beers: res.data.entries, total_pages: res.data.total_pages })
       })
   }
 
