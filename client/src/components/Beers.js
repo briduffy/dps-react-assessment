@@ -44,12 +44,12 @@ class Beers extends React.Component {
         <Header as='h2' textAlign='center'>BEERS</Header>
           <Card.Group styles={styles.scroller} itemsPerRow={5}>
             <InfiniteScroll
-              pageStart={page}
+              pageStart={0}
               loadMore={this.loadMore}
-              hasMore={page < total_pages}
+              hasMore={this.state.page < this.state.total_pages}
               useWindow={false}
             >
-              {beers.map( beer =>
+              {entries.map( beer =>
                 <Card color='violet' centered key={beer.id}>
                   <Card.Content>
                     <Card.Header>
