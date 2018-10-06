@@ -11,7 +11,8 @@ import {
 } from 'semantic-ui-react'
 
 const styles = {
-  scroller: { height: '80vh', overflow: 'auto' }
+  scroller: { height: '80vh', overflow: 'auto' },
+  backgroundColor: 'white' 
 }
 
 class Beers extends React.Component {
@@ -27,7 +28,7 @@ class Beers extends React.Component {
   loadMore = () => {
     const page = this.state.page + 1
     axios.get(`/api/all_beers?page=${page}`)
-      .then( ({data}) => {
+      .then( ({data, headers }) => {
         this.setState( state => {
           return { beers: [...state.beer, ...data.entries], page: state.page +1}
         })
@@ -41,7 +42,7 @@ class Beers extends React.Component {
 
   render() {
     return(
-      <Container>
+      <Container styles={styles.backgroundColor}>
         <Header as='h2' textAlign='center'>BEERS</Header>
           <Card.Group styles={styles.scroller} itemsPerRow={5}>
             <InfiniteScroll
@@ -50,8 +51,8 @@ class Beers extends React.Component {
               hasMore={this.state.page < this.state.total_pages}
               useWindow={false}
             >
-              {this.state.beers.map( beer =>
-                <Card color='violet' centered key={beer.id}>
+              {this.state.beers.map( (beer, b) =>
+                <Card color='violet' centered key={b}>
                   <Card.Content>
                     <Card.Header>
                       {beer.name}
