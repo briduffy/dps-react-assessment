@@ -38,6 +38,7 @@ class Beers extends React.Component {
   }
 
   render() {
+    const { entries } = this.state.beers
     return(
       <Container>
         <Header as='h2' textAlign='center'>BEERS</Header>
