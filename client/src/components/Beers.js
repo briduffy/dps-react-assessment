@@ -26,9 +26,11 @@ class Beers extends React.Component {
 
   loadMore = () => {
     const page = this.state.page + 1
-    axios.get(`api/beers?page=${page}`)
+    axios.get(`/api/all_beers?page=${page}`)
       .then( ({data}) => {
-        this.setState({ beers: [...this.state.beers, ...beers] })
+        this.setState( state => {
+          return { beers: [...state.beer, ...data.entries], page: state.page +1}
+        })
       })
   }
 
