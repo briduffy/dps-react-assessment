@@ -59,14 +59,15 @@ class Beers extends React.Component {
                       </Card.Header>
                       <Card.Description>
                         {beer.description}
-                      </Card.Description>
-                      <Card.Content extra>
-                        <Button fluid animated='vertical' color='violet' onClick={() => this.viewBeer(beer.name)}>
+                        <Button floated='right' animated='vertical' color='violet' onClick={() => this.viewBeer(beer.name)}>
                           <Button.Content hidden>View</Button.Content>
                           <Button.Content visible>
                             <Icon name='bar'/>
                           </Button.Content>
                         </Button>
+                      </Card.Description>
+                      <Card.Content extra>
+
                       </Card.Content>
                     </Card.Content>
                   </Card>                                                
