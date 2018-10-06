@@ -30,7 +30,7 @@ class Beers extends React.Component {
     axios.get(`/api/all_beers?page=${page}`)
       .then( ({data, headers }) => {
         this.setState( state => {
-          return { beers: [...state.beer, ...data.entries], page: state.page +1}
+          return { beers: [...state.beers, ...data.entries], page: state.page +1}
         })
       })
   }
@@ -44,35 +44,35 @@ class Beers extends React.Component {
     return(
       <Container styles={styles.backgroundColor}>
         <Header as='h2' textAlign='center'>BEERS</Header>
-          <Card.Group styles={styles.scroller} itemsPerRow={5}>
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={this.loadMore}
-              hasMore={this.state.page < this.state.total_pages}
-              useWindow={false}
-            >
-              {this.state.beers.map( (beer, b) =>
-                <Card color='violet' centered key={b}>
-                  <Card.Content>
-                    <Card.Header>
-                      {beer.name}
-                    </Card.Header>
-                    <Card.Description>
-                      {beer.description}
-                    </Card.Description>
-                    <Card.Content extra>
-                      <Button animated='vertical' primary basic size='tiny' onClick={() => this.viewBeer(beer.name)}>
-                        <Button.Content hidden>View</Button.Content>
-                        <Button.Content visible>
-                          <Icon name='bar'/>
-                        </Button.Content>
-                      </Button>
+          <InfiniteScroll
+                pageStart={0}
+                loadMore={this.loadMore}
+                hasMore={this.state.page < this.state.total_pages}
+                useWindow={false}
+              >
+            <Card.Group styles={styles.scroller} itemsPerRow={1}>
+                {this.state.beers.map( (beer, b) =>
+                  <Card color='violet' centered key={b}>
+                    <Card.Content>
+                      <Card.Header>
+                        {beer.name}
+                      </Card.Header>
+                      <Card.Description>
+                        {beer.description}
+                      </Card.Description>
+                      <Card.Content extra>
+                        <Button fluid animated='vertical' color='violet' onClick={() => this.viewBeer(beer.name)}>
+                          <Button.Content hidden>View</Button.Content>
+                          <Button.Content visible>
+                            <Icon name='bar'/>
+                          </Button.Content>
+                        </Button>
+                      </Card.Content>
                     </Card.Content>
-                  </Card.Content>
-                </Card>                                                
-              )}
-            </InfiniteScroll>
-          </Card.Group>
+                  </Card>                                                
+                )}
+              </Card.Group>
+          </InfiniteScroll>
       </Container>
     )
   }
