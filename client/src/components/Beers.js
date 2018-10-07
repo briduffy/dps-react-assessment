@@ -12,7 +12,7 @@ import {
 
 const styles = {
   scroller: { height: '80vh', overflow: 'auto' },
-  backgroundColor: 'white' 
+  container: { backgroundColor: 'white' },
 }
 
 class Beers extends React.Component {
@@ -35,14 +35,9 @@ class Beers extends React.Component {
       })
   }
 
-  viewBeer = (name) => {
-    const { beers } = this.state
-    axios.put(`/api/beer/${name}`)
-  }
-
   render() {
     return(
-      <Container styles={styles.backgroundColor}>
+      <Container styles={styles.container}>
         <Header as='h2' textAlign='center'>BEERS</Header>
           <InfiniteScroll
                 pageStart={0}
@@ -59,16 +54,19 @@ class Beers extends React.Component {
                       </Card.Header>
                       <Card.Description>
                         {beer.description}
-                        <Button floated='right' animated='vertical' color='violet' onClick={() => this.viewBeer(beer.name)}>
+                        <Button
+                          floated='right'
+                          animated='vertical'
+                          color='violet'
+                          href={`/beer/${beer.name}`}
+                          rel="noopener norefferer"
+                        >
                           <Button.Content hidden>View</Button.Content>
                           <Button.Content visible>
                             <Icon name='bar'/>
                           </Button.Content>
                         </Button>
                       </Card.Description>
-                      <Card.Content extra>
-
-                      </Card.Content>
                     </Card.Content>
                   </Card>                                                
                 )}
