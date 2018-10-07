@@ -10,9 +10,10 @@ import { injectGlobal } from 'styled-components';
 
 injectGlobal`
   html, body {
-    background-color: black;
+    background-color: white;
     width: 100%;
     height: 100%;
+    color: blaok;
   }
 `
 

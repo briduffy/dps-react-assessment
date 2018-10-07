@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import { connect } from 'react-redux'
 import {
   Container,
   Card,
@@ -11,10 +10,9 @@ const styles = {
 }
 
 class Beer extends React.Component {
-  state = { beer: {} }
+  state = { beer: [] }
 
   componentDidMount() {
-    const { dispatch } = this.props
     const { name } = this.props.match.params
     axios.get(`api/beer/${name}`)
       .then( res => this.setState({ beer: res.data.entries[0] }) )
@@ -42,4 +40,4 @@ class Beer extends React.Component {
   }
 }
 
-export default connect()(Beer)
+export default Beer
