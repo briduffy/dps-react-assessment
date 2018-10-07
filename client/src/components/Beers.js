@@ -36,12 +36,6 @@ class Beers extends React.Component {
       })
   }
 
-  showBeer = (beer) => {
-    return (
-      <Image size='small' floated='left' rounded src={beer.images} />
-    )
-  }
-
   render() {
     return(
       <Container styles={styles.container}>
@@ -56,7 +50,6 @@ class Beers extends React.Component {
                 {this.state.beers.map( (beer, b) =>
                   <Card color='violet' centered key={b}>
                     <Card.Content>
-                      {beer.labels ? this.showBeer(beer) : <Image size='small' verticalAlign='middle' src={'https://www.brewersassociation.org/wp-content/uploads/2015/05/ba_fb_styles2.jpg'} />}
                       <Card.Header>
                         {beer.name}
                       </Card.Header>
