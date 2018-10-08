@@ -39,13 +39,12 @@ class Beers extends React.Component {
   }
 
   searchBeers = (term) => {
-    const {dispatch} = this.props;
+    const {dispatch} = this.props
     axios.get(`/api/search_beers?query=${term}`)
       .then(res => {
         this.setState({beers: res.data.entries})
       });
   }
-
 
   render() {
     return(
