@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import SearchItems from './SearchItems'
 import InfiniteScroll from 'react-infinite-scroller'
 import { Link } from 'react-router-dom'
 import {
@@ -36,10 +38,22 @@ class Beers extends React.Component {
       })
   }
 
+  searchBeers = (term) => {
+    const {dispatch} = this.props;
+    axios.get(`/api/search_beers?query=${term}`)
+      .then(res => {
+        this.setState({beers: res.data.entries})
+      });
+  }
+
+
   render() {
     return(
       <Container styles={styles.container}>
         <Header as='h2' textAlign='center'>BEERS</Header>
+        <SearchItems
+          onSearchTermChange={this.searchBeers}
+        />
           <InfiniteScroll
                 pageStart={0}
                 loadMore={this.loadMore}
@@ -78,4 +92,4 @@ class Beers extends React.Component {
   }
 }
 
-export default Beers
+export default connect()(Beers)
