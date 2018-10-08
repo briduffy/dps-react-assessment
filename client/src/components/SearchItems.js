@@ -4,9 +4,10 @@ import { Search } from 'semantic-ui-react'
 class SearchItems extends React.Component {
   state = {term: ''}
 
-  handleSearchChange(term) {
-    this.setState({term});
-    this.props.onSearchTermChange(term);
+  handleSearchChange = (e) => {
+    const { name, value } = e.target
+    this.setState({term})
+    this.props.onSearchTermChange(term)
   }
 
   render() {
